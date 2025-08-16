@@ -1,0 +1,20 @@
+# Minimal requirements for Vercel deployment
+# Use this if the main requirements.txt fails
+
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+python-dotenv
+bcrypt
+pyjwt
+email-validator
+pyswisseph
+requests
+pytz
+httpx
+python-dateutil
+openai
