@@ -1,0 +1,29 @@
+/* Additional global styles */
+.App {
+  text-align: center;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus styles */
+*:focus {
+  outline: 2px solid theme('colors.primary.500');
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

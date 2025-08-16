@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://kagabhushundi:kagabhushundi@db:5432/kagabhushundi
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-your-secret-key-change-in-production}
+    volumes:
+      - ./backend:/app
+      - backend_logs:/app/logs
+    depends_on:
+      - db
+    networks:
+      - kagabhushundi-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - kagabhushundi-network
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=kagabhushundi
+      - POSTGRES_USER=kagabhushundi
+      - POSTGRES_PASSWORD=kagabhushundi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - kagabhushundi-network
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - kagabhushundi-network
+
+volumes:
+  postgres_data:
+  backend_logs:
+
+networks:
+  kagabhushundi-network:
+    driver: bridge

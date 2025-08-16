@@ -1,0 +1,453 @@
+/* Book Pooja Styles */
+.pooja-card {
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.pooja-card:hover {
+  border-color: #f97316;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.pooja-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .pooja-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar for date/time selection */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 #f3f4f6;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Animation for booking cards */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Responsive tabs */
+.tab-content {
+  min-height: 200px;
+}
+
+/* Price highlight animation */
+@keyframes priceGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(249, 115, 22, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.8);
+  }
+}
+
+.price-highlight {
+  animation: priceGlow 2s ease-in-out infinite;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Button hover effects */
+.btn-book:hover {
+  background: linear-gradient(135deg, #ea580c, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-book:active {
+  transform: translateY(0);
+}
+
+/* Category filter chips */
+.category-chip {
+  transition: all 0.2s ease;
+}
+
+.category-chip:hover {
+  background-color: #fed7aa;
+  color: #ea580c;
+}
+
+.category-chip.active {
+  background-color: #f97316;
+  color: white;
+}
+
+/* Search input styling */
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+/* Card image overlay */
+.image-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+/* Responsive design helpers */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Notification styles */
+.notification {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+  border-left: 4px solid #10b981;
+}
+
+.notification.error {
+  border-left: 4px solid #ef4444;
+}
+
+/* Special effects for festival poojas */
+.festival-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.festival-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Pooja Detail Page Styles */
+.pooja-detail-container {
+  background: #f9fafb;
+  min-height: 100vh;
+}
+
+.pooja-detail-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pooja-detail-split {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .pooja-detail-split {
+    flex-direction: row;
+    min-height: 600px;
+  }
+}
+
+.pooja-image-section {
+  flex: 1;
+  position: relative;
+}
+
+.pooja-image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+}
+
+@media (min-width: 1024px) {
+  .pooja-image-section img {
+    min-height: 600px;
+  }
+}
+
+.pooja-content-section {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pooja-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 1024px) {
+  .pooja-title {
+    font-size: 2.25rem;
+  }
+}
+
+.pooja-description {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .pooja-description {
+    font-size: 1rem;
+  }
+}
+
+.pooja-price-section {
+  margin-bottom: 2rem;
+}
+
+.pooja-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+@media (min-width: 1024px) {
+  .pooja-price {
+    font-size: 2.5rem;
+  }
+}
+
+.pooja-original-price {
+  font-size: 1.125rem;
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+.pooja-discount {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.pooja-benefits {
+  margin-bottom: 2rem;
+}
+
+.pooja-benefits h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-item svg {
+  color: #10b981;
+  margin-right: 0.75rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.benefit-item span {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.pooja-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+}
+
+.meta-item svg {
+  color: #f97316;
+  margin-right: 0.5rem;
+}
+
+.meta-item span {
+  font-size: 0.875rem;
+}
+
+.book-now-btn {
+  width: 100%;
+  background-color: #1f2937;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.book-now-btn:hover {
+  background-color: #111827;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.action-btn:hover {
+  color: #f97316;
+}
+
+.action-btn svg {
+  margin-right: 0.25rem;
+}
+
+.action-btn span {
+  font-size: 0.875rem;
+}
+
+.badge {
+  position: absolute;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+}
+
+.badge-discount {
+  background-color: #ef4444;
+  top: 1rem;
+  right: 1rem;
+}
+
+.badge-popular {
+  background-color: #f97316;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.badge-popular svg {
+  margin-right: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.features-section {
+  margin-top: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}

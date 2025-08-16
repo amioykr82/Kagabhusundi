@@ -1,0 +1,16 @@
+{
+  "name": "Kagabhushundi - Astrology App",
+  "short_name": "Kagabhushundi",
+  "description": "Professional Astrology Services",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
