@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text, Float
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text, Float, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -24,7 +24,7 @@ class User(Base):
 
     # Relationships
     kundalis = relationship("Kundali", back_populates="user")
-    bookings = relationship("PoojaBooking", back_populates="user")
+    pooja_bookings = relationship("PoojaBooking", back_populates="user")
     chat_sessions = relationship("ChatSession", back_populates="user")
     orders = relationship("Order", back_populates="user")
 
@@ -43,21 +43,46 @@ class Kundali(Base):
 
     user = relationship("User", back_populates="kundalis")
 
+class PoojaService(Base):
+    __tablename__ = "pooja_services"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(255), nullable=False)
+    description = Column(Text)
+    duration_minutes = Column(Integer, default=60)
+    price = Column(Float, nullable=False)
+    category = Column(String(100), nullable=False)  # e.g., "Health", "Wealth", "Spiritual", "Family"
+    benefits = Column(JSON)  # List of benefits
+    requirements = Column(JSON)  # List of requirements/items needed
+    image_url = Column(String(500))
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationship
+    bookings = relationship("PoojaBooking", back_populates="service")
+
 class PoojaBooking(Base):
     __tablename__ = "pooja_bookings"
-
-    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
-    user_id = Column(String, ForeignKey("users.id"))
-    pooja_name = Column(String, nullable=False)
-    pooja_id = Column(Integer, nullable=False)
+    
+    id = Column(Integer, primary_key=True, index=True)
+    service_id = Column(Integer, ForeignKey("pooja_services.id"), nullable=False)
+    user_id = Column(String, ForeignKey("users.id"), nullable=True)  # Optional for guest bookings
+    participant_name = Column(String(255), nullable=False)
+    participant_phone = Column(String(20), nullable=False)
+    participant_email = Column(String(255), nullable=False)
     booking_date = Column(DateTime, nullable=False)
-    booking_time = Column(String, nullable=False)
-    price = Column(Float, nullable=False)
-    status = Column(String, default="pending")  # pending, confirmed, completed, cancelled
-    special_requirements = Column(Text, nullable=True)
+    special_requests = Column(Text)
+    address = Column(Text, nullable=False)
+    total_amount = Column(Float, nullable=False)
+    status = Column(String(50), default="confirmed")  # confirmed, completed, cancelled
+    payment_status = Column(String(50), default="pending")  # pending, paid, refunded
     created_at = Column(DateTime, default=datetime.utcnow)
-
-    user = relationship("User", back_populates="bookings")
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationships
+    service = relationship("PoojaService", back_populates="bookings")
+    user = relationship("User", back_populates="pooja_bookings")
 
 class ChatSession(Base):
     __tablename__ = "chat_sessions"

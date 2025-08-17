@@ -16,6 +16,7 @@ from services.compatibility_service import router as compatibility_router
 from services.auth_service import router as auth_router
 from services.chat_service import router as chat_router
 from services.store_service import router as store_router
+from services.pooja_service import router as pooja_router
 from utils.database import init_db
 
 @asynccontextmanager
@@ -66,6 +67,8 @@ async def root():
             "Horoscope Predictions", 
             "Tarot Readings",
             "Compatibility Analysis",
+            "Pooja Booking System",
+            "Astro Store",
             "AI-powered Interpretations"
         ]
     }
@@ -82,6 +85,7 @@ app.include_router(tarot_router, prefix="/api/tarot", tags=["Tarot"])
 app.include_router(compatibility_router, prefix="/api/compatibility", tags=["Compatibility"])
 app.include_router(chat_router, prefix="/api/chat", tags=["Chat"])
 app.include_router(store_router, prefix="/api/store", tags=["Store"])
+app.include_router(pooja_router, prefix="/api/pooja", tags=["Pooja"])
 
 # Error handlers
 @app.exception_handler(404)
