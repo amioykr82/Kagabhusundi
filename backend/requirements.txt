@@ -2,6 +2,9 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 
+# Serverless Adapter for Netlify
+mangum==0.17.0
+
 # Database Dependencies
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9

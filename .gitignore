@@ -271,3 +271,6 @@ kagabhushundi.db
 
 # Test files
 test-registration.html
+
+# Local Netlify folder
+.netlify
