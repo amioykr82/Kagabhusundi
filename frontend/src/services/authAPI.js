@@ -14,11 +14,13 @@ class AuthAPI {
   async request(endpoint, options = {}) {
     const url = `${this.baseURL}${endpoint}`;
     const token = localStorage.getItem('access_token');
+    const bypassSecret = import.meta.env.VITE_VERCEL_BYPASS_SECRET;
     
     const config = {
       headers: {
         'Content-Type': 'application/json',
         ...(token && { 'Authorization': `Bearer ${token}` }),
+        ...(bypassSecret && { 'x-vercel-protection-bypass': bypassSecret }),
         ...options.headers,
       },
       ...options,
